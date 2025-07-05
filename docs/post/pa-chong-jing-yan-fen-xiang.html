@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://pvuh.bmwca.cn/DGSWTC"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="一、打好 Python 基础
+掌握基础语法
+深入理解变量、数据类型（如字符串、列表、字典等）、控制流（if - else、for 循环、while 循环）和函数。">
+<meta property="og:title" content="爬虫经验分享">
+<meta property="og:description" content="一、打好 Python 基础
+掌握基础语法
+深入理解变量、数据类型（如字符串、列表、字典等）、控制流（if - else、for 循环、while 循环）和函数。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://luoyuanzhichan.github.io/jander.github.io/post/pa-chong-jing-yan-fen-xiang.html">
+<meta property="og:image" content="https://pvuh.bmwca.cn/DGSWTC">
+<title>爬虫经验分享</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">爬虫经验分享</h1>
+<div class="title-right">
+    <a href="https://luoyuanzhichan.github.io/jander.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/luoyuanzhichan/jander.github.io/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>一、打好 Python 基础<br>
+掌握基础语法<br>
+深入理解变量、数据类型（如字符串、列表、字典等）、控制流（if - else、for 循环、while 循环）和函数。这些是构建爬虫程序的基石，例如，在解析网页数据时，可能需要使用循环来遍历网页中的多个元素，使用字典来存储提取的数据。<br>
+熟练掌握 Python 的内置函数和标准库。像re库用于正则表达式操作，json库用于处理 JSON 数据，这些在爬虫的数据提取和存储环节经常会用到。<br>
+二、理解网络和网页知识<br>
+熟悉 HTTP 协议<br>
+学习 HTTP 请求方法（GET、POST 等）的区别和使用场景。例如，GET 请求通常用于获取网页资源，而 POST 请求用于提交数据，如登录表单。了解请求头（包含用户代理、接受的内容类型等信息）和响应头（包含服务器返回的状态码、内容类型等）的作用，在应对反爬虫机制时，合理设置请求头可以模拟真实用户的请求，避免被服务器识别为爬虫。<br>
+研究响应状态码的含义，如 200 表示成功获取资源，403 表示禁止访问，404 表示资源未找到。通过判断状态码，可以及时发现请求过程中的问题。<br>
+掌握网页结构<br>
+学习 HTML、XML 的基本语法，了解标签、属性和元素的概念。这有助于在解析网页时定位数据所在的位置。例如，使用BeautifulSoup库可以通过标签名、类名或 ID 来查找网页中的特定元素，提取其中包含的数据。<br>
+对于动态网页，需要了解 JavaScript 在网页加载和数据呈现中的作用。一些网站的数据是通过 JavaScript 动态加载的，这时可能需要使用Selenium等工具来模拟浏览器行为，获取完整的网页内容。<br>
+三、深入学习爬虫库<br>
+掌握 requests 库<br>
+熟练使用requests库发送各种类型的 HTTP 请求。学会设置请求参数，如params用于 GET 请求的参数传递，data用于 POST 请求的数据传递。例如，在爬取带有搜索功能的网站时，可能需要通过params传递搜索关键词。<br>
+学会处理请求的返回结果，包括获取响应的文本内容、二进制内容（用于下载图片、文件等），以及处理可能出现的异常情况，如网络连接中断、服务器响应错误等。<br>
+精通网页解析库<br>
+BeautifulSoup：深入学习使用不同的解析器（如lxml、html.parser），了解它们的优缺点。掌握通过各种选择器（标签选择器、类选择器、ID 选择器等）来定位网页元素的方法，以及如何获取元素的文本内容和属性值。例如，可以使用类选择器提取商品价格、评论等信息。<br>
+lxml：学习 XPath 和 CSS 选择器的语法，利用lxml库的高效解析功能快速定位和提取网页数据。XPath 尤其适用于复杂的网页结构，能够精确地定位到需要的数据节点。<br>
+Scrapy 框架：理解 Scrapy 的架构，包括Spider（用于定义如何爬取网页）、Item（用于存储爬取的数据）、Pipeline（用于处理和存储数据）等组件。学会使用 Scrapy - Redis 实现分布式爬虫，提高数据爬取效率。例如，在大规模数据爬取任务中，分布式爬虫可以同时从多个节点进行爬取，缩短任务完成时间。<br>
+四、应对反爬虫机制<br>
+识别反爬虫策略<br>
+学会识别常见的反爬虫手段，如 IP 限制（通过限制同一 IP 的访问频率来阻止爬虫）、验证码（要求用户输入验证码来验证是否为真实用户）、动态加载数据（使用 JavaScript 在页面加载后再加载数据，使简单的爬虫无法获取完整数据）等。通过观察网页请求和响应的变化，以及网页的行为特点，判断网站是否采用了反爬虫措施。<br>
+采取应对措施<br>
+使用代理 IP：了解代理 IP 的原理和获取方式，建立代理 IP 池。在发送请求时，随机选择代理 IP，避免因频繁使用同一 IP 而被封禁。但要注意代理 IP 的质量，有些免费代理 IP 可能不稳定或已经被网站标记。<br>
+伪装请求头：仔细研究真实用户请求头的特征，包括User - Agent（用户代理，标识浏览器类型和版本）、Referer（表示请求的来源页面）等字段。在发送请求时，模拟真实用户的请求头，使服务器难以区分是真实用户还是爬虫。<br>
+处理验证码：对于简单的验证码（如图形验证码），可以尝试使用光学字符识别（OCR）技术来识别。对于复杂的验证码（如滑动验证码、拼图验证码），可能需要借助第三方打码服务，或者通过模拟用户操作来解决，如使用Selenium模拟滑动验证码的滑动过程。<br>
+五、注重数据存储和清理<br>
+选择合适的数据存储方式<br>
+根据爬取数据的类型和规模，选择合适的数据存储方式。如果数据量较小且结构简单，可以选择存储为文本文件（如 CSV、JSON 格式）。对于大量的结构化数据，关系型数据库（如 MySQL、SQLite）是不错的选择；如果数据是非结构化的，如文档、图像等，非关系型数据库（如 MongoDB）或者文件系统可能更合适。<br>
+学会使用 Python 相关的数据库操作库，如pymysql（用于 MySQL 数据库）、pymongo（用于 MongoDB 数据库），将爬取的数据有效地存储到数据库中，包括数据的插入、更新和查询操作。<br>
+数据清理和预处理<br>
+在存储数据之前，对数据进行清理和预处理。这可能包括去除数据中的噪声（如 HTML 标签、多余的空格）、转换数据格式（如日期格式的统一）、验证数据的完整性（如检查必填字段是否为空）等操作。例如，在提取文本数据时，使用正则表达式或字符串处理函数去除 HTML 标签，使数据更纯净。<br>
+六、实践与项目积累<br>
+从简单项目开始<br>
+选择一些结构简单、反爬虫机制较弱的网站进行实践，如个人博客、简单的新闻网站等。在实践过程中，尝试运用所学的爬虫知识，从发送请求、解析网页到存储数据，完成一个完整的流程。通过不断地调试和优化，提高自己的爬虫技能。<br>
+逐步挑战复杂项目<br>
+随着经验的积累，尝试挑战一些具有复杂结构和强大反爬虫机制的网站，如电商网站、社交媒体平台等。这些项目可以让你深入了解高级爬虫技术和应对反爬虫策略，同时还能学习如何处理大规模的数据爬取和存储。在完成项目后，对项目进行复盘，总结经验教训，进一步提升自己的能力。<br>
+————————————————</p>
+<pre class="notranslate"><code class="notranslate">                        版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+</code></pre>
+<p>原文链接：<a href="https://blog.csdn.net/2503_90284161/article/details/145159812" rel="nofollow">https://blog.csdn.net/2503_90284161/article/details/145159812</a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://luoyuanzhichan.github.io/jander.github.io">周若湲的博客</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","luoyuanzhichan/jander.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
